@@ -1,7 +1,7 @@
 # PowahShell
 
 ## Obfuscating Boolean Values
-It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]1`):
+It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]0x01`):
  - Simple and complex logical substitutes (obviously):
  ```
  [bool]1254
@@ -49,3 +49,16 @@ i''e''x''
 ```
 
 In loops and comparisons....
+
+## Cmdlet Quote Interruption
+You can obfuscate cmdlets by adding single and/or double quotes in between their characters, as long as it's not at the beginning. It's super effective! For example, the expresion 'iex "pwd"' can substituted with:
+```
+i''ex "pwd"
+i''e''x "pwd"
+i''e''x'' "pwd"
+i""e''x "pwd"
+ie""x'' "pwd"
+# and so on...
+```
+```
+```
