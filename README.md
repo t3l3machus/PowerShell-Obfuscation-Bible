@@ -46,7 +46,7 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
 [System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
 ![System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
 i''e''x''
-```
+
 
 In loops and comparisons....
 
@@ -60,5 +60,4 @@ i""e''x "pwd"
 ie""x'' "pwd"
 # and so on...
 ```
-```
-```
+
