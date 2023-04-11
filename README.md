@@ -51,7 +51,7 @@ i''e''x''
 In loops and comparisons....
 
 ## Cmdlet Quote Interruption
-You can obfuscate cmdlets by adding single and/or double quotes in between their characters, as long as it's not at the beginning. It's super effective! For example, the expresion 'iex "pwd"' can substituted with:
+You can obfuscate cmdlets by adding single and/or double quotes in between their characters, as long as it's not at the beginning. It's super effective! For example, the expresion `iex "pwd"` can be substituted with:
 ```
 i''ex "pwd"
 i''e''x "pwd"
