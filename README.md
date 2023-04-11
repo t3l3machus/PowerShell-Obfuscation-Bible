@@ -10,6 +10,9 @@ A boolean value in PowerShell can be replaced with at least the following. All o
  [bool][convert]::ToInt32("111011", 2) # Converts a string to int from base 2 (binary)
  ![bool]$null
  ![bool]$False
+ [bool]"Any non empty string"
+ [bool](-12354893)   # Boolean typecast of a negative number returns True
+ [bool](12 + (3 * 6))
  ```
  - Boolean type casting any class will return `True`:
  ```
@@ -35,7 +38,7 @@ A boolean value in PowerShell can be replaced with at least the following. All o
  $x = ([math]::Round([math]::PI) -eq (4583 - 4580)) # Complex
  ```
 
- - Boolean type casting something you know will return a value > 0 (can also be a string, array, etc)
+ - Boolean type casting something you know will return a value Not equal to 0 (can also be a string, array, etc)
  ```
  [bool](Get-ChildItem -Path Env: | Where-Object {$_.Name -eq "username"})
  [bool]@(0x01BE)
