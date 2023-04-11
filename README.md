@@ -34,7 +34,7 @@ A boolean value in PowerShell can be replaced with at least the following. All o
  $x = (9999 -eq 9999) # Simple
  $x = ([math]::Round([math]::PI) -eq (4583 - 4580)) # Complex
  ```
-```
+
  - Boolean type casting something you know will return a value > 0 (can also be a string, array, etc)
  ```
  [bool](Get-ChildItem -Path Env: | Where-Object {$_.Name -eq "username"})
