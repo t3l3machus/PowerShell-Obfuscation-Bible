@@ -141,7 +141,40 @@ The `(pwd).Path` part can be replaced by the following weird, unorthodox little 
 ```
 "$($p = (Split-Path `"$(pwd)\\0x00\`");if ($p.trim() -eq ''){echo 'C:\'}else{echo $p})"
 ```  
-There are of course simpler substitutes for `pwd` like `gl`,`get-location` and `cmd.exe /c chdir`that could do the trick, especially in combination with other techniques.
+There are of course simpler substitutes for `pwd` like `gl`, `get-location` and `cmd.exe /c chdir` that could do the trick, especially in combination with other techniques.
+
+## Mess With Strings
+There's no end to what could someone do with strings. Find below some interesting concepts. Examples use the string `'malware'`:
+
+### Concatenation
+Pretty straightforward and classic:
+```
+'mal' + 'w' + 'ar' + 'e'
+```
+
+### Get string from substring:
+Add the desired value between an irelevant string and use `substring()` to extract it based on start - end indexes:
+```
+'xxxmalwarexxx'.Substring(3,7)
+```
+
+### Replace string by regex match:
+Create a junk string and replace it with the desired value via regex matching:
+```
+'a123' -replace '[a-zA-Z]{1}[\d]{1,3}','malware'
+```
+
+### Base64 decode the desired string:
+Encode your string and decode it within the script:
+```
+[System.Text.Encoding]::Default.GetString([System.Convert]::FromBase64String("bWFsd2FyZQ=="))
+```
+
+### Base64 decode the desired string:
+Encode your string and decode it within the script:
+```
+[System.Text.Encoding]::Default.GetString([System.Convert]::FromBase64String("bWFsd2FyZQ=="))
+```
 
 ## Append/Remove Comments
 ### Appending Comments
