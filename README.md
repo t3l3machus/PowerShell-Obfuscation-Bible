@@ -104,7 +104,7 @@ function runToInfinity {
   # do something;  
   runToInfinity;
 }
-
+```
 
 ## Append/Remove Comments
 ### Appending Comments
