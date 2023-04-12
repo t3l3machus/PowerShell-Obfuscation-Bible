@@ -104,4 +104,6 @@ Modified (appended <# SOME RANDOM COMMENT #> in various places)
 There are malware-ish keywords that will trigger AMSI immediatly and should be replaced when obfuscating scripts. Check this out:
 
 Just by typing the work 'mimikatz' in the terminal AMSI is having a stroke. 
-These keywords may be found in comments as well, so it's a good idea to remove them, especially from FOS resources you grab from the internet (e.g. `Invoke-Mimikatz.ps1` from GitHub). \*It's a good idea to remove comments generally, this was just an example.
+These keywords may be found in comments as well, so it's a good idea to remove them, especially from FOS resources you grab from the internet (e.g. `Invoke-Mimikatz.ps1` from GitHub).  
+  
+\*It's a good idea to remove comments generally, this was just an example.
