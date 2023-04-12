@@ -56,8 +56,19 @@ You can obfuscate cmdlets by adding single and/or double quotes in between their
 i''ex "pwd"
 i''e''x "pwd"
 i''e''x'' "pwd"
-i""e''x "pwd"
+ie''x'' "pwd"
+iex'' "pwd"
+i""e''x"" "pwd"
 ie""x'' "pwd"
-# and so on...
+
+# and so on... but also:
+
+i''ex "p''wd"
+i''e''x "p''w''d"
+i''e''x'' "p''w''d''"
+ie''x'' "pw''d`"`""
+iex'' "p`"`"w`"`"d`"`""
+i""e''x"" "p`"`"w`"`"d''"
+ie""x'' "p`"`"w''d`"`""
 ```
 
