@@ -134,7 +134,7 @@ iex $virus;
 ```
 
 ## Substitute Commands
-You can always look for commands or even whole code blocks in a script that you can substitute with components that have the same/similar functionality. In the following classic reverse shell script, you can see the `pwd` command is used to retrieve the current working directory and reconstruct the shell's prompt value:  
+You can always look for commands or even whole code blocks in a script that you can substitute with components that have the same/similar functionality. In the following classic reverse shell script, the `pwd` command is used to retrieve the current working directory and reconstruct the shell's prompt value:  
 ![image](https://user-images.githubusercontent.com/75489922/231549917-26ec7969-f2ea-4fbc-ae00-931e92947064.png)
 
 The `(pwd).Path` part can be replaced by the following weird, unorthodox little script and although it includes `pwd` it does server our purpose of breaking the signature while maintaining the functionality of the script:
