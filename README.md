@@ -6,6 +6,8 @@
 3. [Substitute-Loops](Substitute-Loops)
 4. [Append/Remove Comments](#Append\/Remove-Comments)
 
+![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)
+
 ## Obfuscate Boolean Values
 It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]0x01`):
  - Boolean typecast of literally anything that is not 0 or Null will return `True`:
