@@ -50,13 +50,14 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  ```
  - Or you can just grab a `True` value from an object's attributes:
  ```
- [System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
- [System.TimeZoneInfo+AdjustmentRule].IsAnsiClass
- [mailaddress].IsAutoLayout
- [ValidateCount].IsVisible
+ $x = [System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
+ $x = [System.TimeZoneInfo+AdjustmentRule].IsAnsiClass
+ $x = [mailaddress].IsAutoLayout
+ $x = [ValidateCount].IsVisible
  ```
  - You can mix all these stuff and weird things up by composing hideous ways to state `True` or `False`:
  ```
+ [bool](![bool]$null)
  [System.Collections.CaseInsensitiveComparer] -ne [bool][datetime]'2023-01-01'
  ```
  !$False
