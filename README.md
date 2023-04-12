@@ -2,7 +2,7 @@
 
 ## Obfuscating Boolean Values
 It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]0x01`):
- - Simple and complex logical substitutes (obviously):
+ - Boolean typecast of literally anything that is not 0 will return `True`:
  ```
  [bool]1254
  [bool]0x12AE
@@ -10,11 +10,11 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  ![bool]$null
  ![bool]$False
  [bool]"Any non empty string"
- [bool](-12354893)   # Boolean typecast of a negative number returns True
+ [bool](-12354893)   # Boolean typecast of a negative number 
  [bool](12 + (3 * 6))
  !$False
  ```
- - Boolean type casting any class will return `True`:
+ - Boolean typecast of any class will return `True` as well:
  ```
  [bool][bool]
  [bool][char]
