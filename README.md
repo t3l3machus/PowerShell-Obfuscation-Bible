@@ -31,7 +31,7 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  [bool][System.Collections.Hashtable]
  # Well, you get the point.
  ```
- - The result of a comparison:
+ - The result of a comparison that evaluates to `True` (duh):
  ```
  $x = (9999 -eq 9999) # Simple
  $x = ([math]::Round([math]::PI) -eq (4583 - 4580)) # Complex
@@ -42,8 +42,13 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  [bool](Get-ChildItem -Path Env: | Where-Object {$_.Name -eq "username"})
  [bool]@(0x01BE)
  ```
-[System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
-![System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
+ - Or you can just grab a `True` value from an object's attributes:
+ ```
+ [System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
+ [System.TimeZoneInfo+AdjustmentRule].IsAnsiClass
+ [mailaddress].IsAutoLayout
+ [ValidateCount].IsVisible
+ ```
  !$False
 
 
