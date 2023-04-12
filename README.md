@@ -99,6 +99,9 @@ For (;;) { # some code }
 # A Do-While loop
 Do { # some code } While ($true)
 
+# A Do-Until loop
+Do { # some code } Until (1 -eq 2)
+
 # A recursive function
 function runToInfinity { 
   # do something;  
