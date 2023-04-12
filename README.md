@@ -3,7 +3,7 @@
 ## Techniques
 1. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
 2. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
-3. [Append/Remove Comments](Append/Remove-Comments)
+3. [Append/Remove Comments](#Append/Remove-Comments)
 
 ## Obfuscate Boolean Values
 It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]0x01`):
