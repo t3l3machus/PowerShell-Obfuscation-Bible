@@ -12,7 +12,6 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  [bool]"Any non empty string"
  [bool](-12354893)   # Boolean typecast of a negative number 
  [bool](12 + (3 * 6))
- !$False
  ```
  - Boolean typecast of any class will return `True` as well:
  ```
@@ -45,7 +44,7 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  ```
 [System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
 ![System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
-i''e''x''
+ !$False
 
 
 In loops and comparisons....
