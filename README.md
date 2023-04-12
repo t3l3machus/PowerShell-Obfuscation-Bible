@@ -140,7 +140,8 @@ You can always look for commands or even whole code blocks in a script that you 
 The `(pwd).Path` part can be replaced by the following weird, unorthodox little script and although it even includes `pwd` it does serve our purpose of breaking the signature while maintaining the functionality of the script:
 ```
 "$($p = (Split-Path `"$(pwd)\\0x00\`");if ($p.trim() -eq ''){echo 'C:\'}else{echo $p})"
-```
+```  
+There are of course simpler substitutes for `pwd` like `gl`,`get-location` and `cmd.exe /c chdir`that could do the trick, especially in combination with other techniques.
 
 ## Append/Remove Comments
 ### Appending Comments
