@@ -153,7 +153,7 @@ Pretty straightforward and classic:
 ```
 
 ### Get string from substring:
-Add the desired value between an irelevant string and use `substring()` to extract it based on start - end indexes:
+Add the desired value between an irrelevant string and use `substring()` to extract it based on start - end indexes:
 ```
 'xxxmalwarexxx'.Substring(3,7)
 ```
