@@ -1,6 +1,6 @@
 # PowahShell
 
-# Techniques
+## Techniques
 1. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
 2. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
 3. [Append Comments](Append-Comments)
