@@ -33,8 +33,9 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  ```
  - The result of a comparison that evaluates to `True` (duh):
  ```
- $x = (9999 -eq 9999) # Simple
- $x = ([math]::Round([math]::PI) -eq (4583 - 4580)) # Complex
+ (9999 -eq 9999)
+ ([math]::Round([math]::PI) -eq (4583 - 4580))
+ [Math]::E -ne [Math]::PI
  ```
 
  - Boolean type casting something you know will return a value Not equal to 0 (can also be a string, array, etc)
