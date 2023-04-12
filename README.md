@@ -55,6 +55,10 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  [mailaddress].IsAutoLayout
  [ValidateCount].IsVisible
  ```
+ - You can mix all these stuff and weird things up by composing hideous ways to state `True` or `False`:
+ ```
+ [System.Collections.CaseInsensitiveComparer] -ne [bool][datetime]'2023-01-01'
+ ```
  !$False
 
 
