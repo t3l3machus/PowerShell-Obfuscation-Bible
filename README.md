@@ -103,7 +103,7 @@ for example, a reverse shell command could be obfuscated like this:
 ### Removing Comments
 There are malware-ish keywords that will trigger AMSI immediatly and should be replaced when obfuscating scripts. Check this out:
 
-Just by typing the work 'mimikatz' in the terminal AMSI is having a stroke. 
+Just by typing the word 'mimikatz' in the terminal AMSI is having a stroke. 
 These keywords may be found in comments as well, so it's a good idea to remove them, especially from FOS resources you grab from the internet (e.g. `Invoke-Mimikatz.ps1` from GitHub).  
   
 \*It's a good idea to remove comments generally, this was just an example.
