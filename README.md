@@ -94,22 +94,25 @@ ie""x'' "p`"`"w''d`"`""
 
 ## Substitute Loops
 There are certain loops that can be substituted with other loop types or functions. For example, a `While ($True){ # some code }` loop can be substituted with the following:
-```
-# An infinite For loop.
-For (;;) { # some code }
-
-# A Do-While loop
-Do { # some code } While ($true)
-
-# A Do-Until loop
-Do { # some code } Until (1 -eq 2)
-
-# A recursive function
-function runToInfinity { 
-  # do something;  
-  runToInfinity;
-}
-```
+ - An infinite For loop.
+ ```
+ For (;;) { # some code }
+ ```
+ - A Do-While loop
+ ```
+ Do { # some code } While ($true)
+ ```
+ - A Do-Until loop
+ ```
+ Do { # some code } Until (1 -eq 2)
+ ```
+ - A recursive function
+ ```
+ function runToInfinity { 
+   # do something;  
+   runToInfinity;
+ }
+ ```
 
 ## Append/Remove Comments
 ### Appending Comments
