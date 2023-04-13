@@ -54,8 +54,11 @@ print(entropy(content))
 Or just use this online [Shannon Entropy calculator](https://planetcalc.com/2476/).
 
 ## Identify Detection Triggers
-The mature and elegant thing to do before jumping into trial - error tests to come up with a payload variation that is not flagged is to identify the part(s) that trigger malware detection. A great tool to accomplish that is [AMSItrigger](https://github.com/RythmStick/AMSITrigger). Here's an example:  
-![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)
+The mature and elegant thing to do before jumping into trial - error obfuscation tests to come up with a payload variation that is not flagged, is to identify the part(s) that trigger malware detection. Especially in short scripts like C2 commands, you might be able to make insignificant changes and fly off the radar on the spot.  
+  
+A great tool to accomplish that is [AMSItrigger](https://github.com/RythmStick/AMSITrigger). Here's an example:  
+  
+![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)  
 You can also do this manually by executing a script chunk by chunk.
 
 ## Rename Objects
