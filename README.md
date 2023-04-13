@@ -13,6 +13,8 @@
 
 ## Introduction
 
+## Entropy
+
 ## Rename Objects
 
 ![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)
