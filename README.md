@@ -3,15 +3,16 @@ A collection of techniques, examples and a little bit of theory for manually obf
 
 ## Table of Contents
 1. [Entropy](#Entropy)
-2. [Rename Objects](#Rename-Objects)
-3. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
-4. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
+2. [Identify Detection Triggers](Identify-Detection-Triggers)
+3. [Rename Objects](#Rename-Objects)
+4. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
+5. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
 6. [Get-Command Technique](#Get-Command-Technique)
-5. [Substitute Loops](#Substitute-Loops)
-6. [Substitute Commands](#Substitute-Commands)
-7. [Append Junk](#Append-Junk)
-8. [Append/Remove Comments](#Append\/Remove-Comments)
-9. [Randomize Char Cases](#Randomize-Char-Cases)
+7. [Substitute Loops](#Substitute-Loops)
+8. [Substitute Commands](#Substitute-Commands)
+9. [Append Junk](#Append-Junk)
+10. [Append/Remove Comments](#Append\/Remove-Comments)
+11. [Randomize Char Cases](#Randomize-Char-Cases)
 
 
 ## Entropy
@@ -52,9 +53,14 @@ print(entropy(content))
 ```
 Or just use this online [Shannon Entropy calculator](https://planetcalc.com/2476/).
 
+## Identify Detection Triggers
+The mature and elegant thing to do before jumping into trial - error tests to come up with a payload variation that is not flagged is to identify the part(s) that trigger malware detection. A great tool to accomplish that is [AMSItrigger](https://github.com/RythmStick/AMSITrigger). Here's an example:  
+![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)
+You can also do this manually by executing a script chunk by chunk.
+
 ## Rename Objects
 
-![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)
+
 
 ## Obfuscate Boolean Values
 It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]0x01`):
