@@ -1,7 +1,7 @@
 # PowahShell
+A collection of techniques, examples and a little bith of theory for manually obfuscating PowerShell scripts.
 
-## Techniques
-1. [Introduction](#Introduction)
+## Table of Contents
 2. [Entropy](#Entropy)
 3. [Rename Objects](#Rename-Objects)
 4. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
@@ -12,7 +12,6 @@
 9. [Append/Remove Comments](#Append\/Remove-Comments)
 10. [Randomize Char Cases](#Randomize-Char-Cases)
 
-## Introduction
 
 ## Entropy
 The scientific term `entropy`, which is generally defined as **the measure of randomness or disorder of a system** is important in AV evasion. This is because, 
