@@ -1,16 +1,16 @@
 # PowahShell
-A collection of techniques, examples and a little bith of theory for manually obfuscating PowerShell scripts.
+A collection of techniques, examples and a little bit of theory for manually obfuscating PowerShell scripts.
 
 ## Table of Contents
-2. [Entropy](#Entropy)
-3. [Rename Objects](#Rename-Objects)
-4. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
-5. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
-6. [Substitute Loops](#Substitute-Loops)
-7. [Substitute Commands](#Substitute-Commands)
-8. [Append Junk](#Append-Junk)
-9. [Append/Remove Comments](#Append\/Remove-Comments)
-10. [Randomize Char Cases](#Randomize-Char-Cases)
+1. [Entropy](#Entropy)
+2. [Rename Objects](#Rename-Objects)
+3. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
+4. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
+5. [Substitute Loops](#Substitute-Loops)
+6. [Substitute Commands](#Substitute-Commands)
+7. [Append Junk](#Append-Junk)
+8. [Append/Remove Comments](#Append\/Remove-Comments)
+9. [Randomize Char Cases](#Randomize-Char-Cases)
 
 
 ## Entropy
