@@ -2,18 +2,55 @@
 
 ## Techniques
 1. [Introduction](#Introduction)
-2. [Rename Objects](#Rename-Objects)
-3. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
-4. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
-5. [Substitute Loops](#Substitute-Loops)
-6. [Substitute Commands](#Substitute-Commands)
-7. [Append Junk](#Append-Junk)
-8. [Append/Remove Comments](#Append\/Remove-Comments)
-9. [Randomize Char Cases](#Randomize-Char-Cases)
+2. [Entropy](#Entropy)
+3. [Rename Objects](#Rename-Objects)
+4. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
+5. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
+6. [Substitute Loops](#Substitute-Loops)
+7. [Substitute Commands](#Substitute-Commands)
+8. [Append Junk](#Append-Junk)
+9. [Append/Remove Comments](#Append\/Remove-Comments)
+10. [Randomize Char Cases](#Randomize-Char-Cases)
 
 ## Introduction
 
 ## Entropy
+The scientific term `entropy`, which is generally defined as **the measure of randomness or disorder of a system** is important in AV evasion. This is because, 
+malware often contains code that is highly randomized, encrypted and/or encoded (obfuscated) to make it difficult to analyze and therefore detect. As one of various methods, Antivirus software can detect malware by analyzing the entropy of a payload.  
+  
+It is important to understand this concept because, when obfuscating code, you should keep in mind the entropy variance created by the changes you choose to make. Breaking signatures is easy, but if you don;t pay attention to the entropy level, sophisticated AV/EDRs will see through it.   
+  
+Long story short, **the greater the entropy, the more likely the data is obfuscated or encrypted, and the more probable the file is malicious**. Fortunately, there are ways to lower it.  
+  
+`Claude E. Shannon` introduced a formula for entropy in his 1948 paper `A Mathematical Theory of Communication` which you can use to measure the entropy of the payloads you create / obfuscate. Here's a simple Python implementation of the `Shannon Entropy` you can use:
+```
+#!/bin/python3
+# Usage: python3 entropy.py <file>
+
+import math, sys
+
+def entropy(string):
+    "Calculates the Shannon entropy of a UTF-8 encoded string"
+
+    # decode the string as UTF-8
+    unicode_string = string.decode('utf-8')
+
+    # get probability of chars in string
+    prob = [ float(unicode_string.count(c)) / len(unicode_string) for c in dict.fromkeys(list(unicode_string)) ]
+
+    # calculate the entropy
+    entropy = - sum([ p * math.log(p) / math.log(2.0) for p in prob ])
+
+    return entropy
+
+
+f = open(sys.argv[1], 'rb')
+content = f.read()
+f.close()
+
+print(entropy(content))
+```
+
 
 ## Rename Objects
 
