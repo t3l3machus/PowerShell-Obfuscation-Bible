@@ -263,10 +263,10 @@ Encode your string and decode it within the script:
 Obfuscating a script by appending comments here and there might actually do the trick on its own.  
 for example, a reverse shell command could be obfuscated like this:
 
-**Original** (Common r-shell command that is easily detected by AVs)  
+#### Original (Common r-shell command that is easily detected by AVs)  
 ![image](https://user-images.githubusercontent.com/75489922/232095239-6e46648f-6522-4cc5-a4a9-d423bffa34b4.png)
 
-**Modified** (appended `<# Suspendisse imperdiet lacus eu tellus pellentesque suscipit #>` in various places)  
+#### Modified (appended `<# Suspendisse imperdiet lacus eu tellus pellentesque suscipit #>` in various places)  
 ![image](https://user-images.githubusercontent.com/75489922/232095887-ce5561ca-e568-421a-bd63-f34ee1097f6a.png)
   
 This will not only work, but also lower the payload's `Shannon entropy` value (given that you don't use complex random comments).
