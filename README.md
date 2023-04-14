@@ -165,25 +165,25 @@ Or even better, this one, that has a lower `Shannon entropy` value:
 
 ## Substitute Loops
 There are certain loops that can be substituted with other loop types or functions. For example, a `While ($True){ # some code }` loop can be substituted with the following:
- - An infinite For loop.
- ```
- For (;;) { # some code }
- ```
- - A Do-While loop
- ```
- Do { # some code } While ($true)
- ```
- - A Do-Until loop
- ```
- Do { # some code } Until (1 -eq 2)
- ```
- - A recursive function
- ```
- function runToInfinity { 
-   # do something;  
-   runToInfinity;
- }
- ```
+**An infinite For loop**
+```
+For (;;) { # some code }
+```
+**A Do-While loop**
+```
+Do { # some code } While ($true)
+```
+**A Do-Until loop**
+```
+Do { # some code } Until (1 -eq 2)
+```
+**A recursive function**
+```
+function runToInfinity { 
+ # do something;  
+ runToInfinity;
+}
+```
 
 ## Append Junk 
 
@@ -269,7 +269,7 @@ for example, a reverse shell command could be obfuscated like this:
 **Modified** (appended `<# Suspendisse imperdiet lacus eu tellus pellentesque suscipit #>` in various places)  
 ![image](https://user-images.githubusercontent.com/75489922/232095887-ce5561ca-e568-421a-bd63-f34ee1097f6a.png)
   
-This will not only work, but also lower the payloads `Shannon entropy` value (given that you don't use complex random comments).
+This will not only work, but also lower the payload's `Shannon entropy` value (given that you don't use complex random comments).
 
 ### Removing Comments
 There are malware-ish strings that will trigger AMSI immediately and it should be a priority to replace them, when obfuscating scripts. Check this out:  
