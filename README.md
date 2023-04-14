@@ -17,13 +17,13 @@ A collection of techniques, examples and a little bit of theory for manually obf
 
 ## Entropy
 The scientific term `entropy`, which is generally defined as **the measure of randomness or disorder of a system** is important in AV evasion. This is because, 
-malware often contains code that is highly randomized, encrypted and/or encoded (obfuscated) to make it difficult to analyze and therefore detect. As one of various methods, Antivirus software can detect malware by analyzing the entropy of a payload.  
+malware often contains code that is highly randomized, encrypted and/or encoded (obfuscated) to make it difficult to analyze and therefore detect. As one of various methods, Antivirus software can detect malware by analyzing the entropy of a payload or file.  
   
 It is important to understand this concept because, when obfuscating code, you should keep in mind the entropy variance created by the changes you choose to make. Breaking signatures is easy, but if you don't pay attention to the entropy level, sophisticated AV/EDRs will see through it.   
   
 Long story short, **the greater the entropy, the more likely the data is obfuscated or encrypted, and the more probable the file is malicious**. Fortunately, there are ways to lower it.  
   
-`Claude E. Shannon` introduced a formula for entropy in his 1948 paper `A Mathematical Theory of Communication` which you can use to measure the entropy of the payloads you create / obfuscate. Here's a simple Python implementation of the `Shannon Entropy` you can use:
+`Claude E. Shannon` introduced a formula in his 1948 paper `A Mathematical Theory of Communication` which you can use to measure the entropy of the payloads you create / obfuscate. Here's a simple Python implementation of the `Shannon Entropy` you can use:
 ```
 #!/bin/python3
 # Usage: python3 entropy.py <file>
