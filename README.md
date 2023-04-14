@@ -164,7 +164,7 @@ Or even better, this one, that has a lower `Shannon entropy` value:
 ```
 
 ## Substitute Loops
-There are certain loops that can be substituted with other loop types or functions. For example, a `While ($True){ # some code }` loop can be substituted with the following:
+There are certain loops that can be substituted with other loop types or functions. For example, a `While ($True){ # some code }` loop can be substituted with the following:  
 **An infinite For loop**
 ```
 For (;;) { # some code }
