@@ -82,12 +82,12 @@ Now consider this version:
   
 ![image](https://user-images.githubusercontent.com/75489922/232209939-cf36274f-c4db-42bf-8ebb-3ea7970197af.png)
   
-This variation also has all variables replaced but this time with names consisting of x number of 'f' characters. I also replaced `(pwd).Path` with `$(gl)` here as well. Again, at the time of writing, it is not detected by MS Defender. The payload has a `Shannon entropy` of `0.76`.  
+This variation also has all variable names replaced but this time with names consisting of x number of 'f' characters, which results in a significant drop of the payloads entropy. I replaced `(pwd).Path` with `$(gl)` here as well. Again, at the time of writing, it is not detected by MS Defender. The payload has a `Shannon entropy` of `0.76`.  
   
 ![image](https://user-images.githubusercontent.com/75489922/232209595-b522dc9b-9b7f-4819-8af4-4a73eb5ffed5.png)
   
   
-⚡ Both of these variations will bypass common AVs, but the second one has a lower entropy and will probably have a better chance when processed by EDRs and other sophisticated anti-malware engines. ⚠️ I am not saying that the better performance of the second payload variation is certainly because of the entropy level (I can't really know that, it could have been the length or both or who knows what), but it is an important aspect to have in mind when obfuscating stuff and this example is meant to underline that concept.  
+⚡ Both of these variations bypass common AVs, but the second one has a lower entropy and will probably have a better chance when processed by EDRs and other sophisticated anti-malware engines. ⚠️ I am not saying that the better performance of the second payload variation in this example is certainly because of the entropy level (I can't really know that, it could have been the length or both or who knows what), but it is an important aspect to have in mind when obfuscating stuff and this example is meant to underline that concept.  
   
 You can use the script below to randomize the names of variables in a PowerShell script. ⚠️ The script is not perfect! If you run it against large, complex PowerShell scripts it might break their functionality by replacing stuff it shouldn't. Use it with caution and be mindful.
   
@@ -155,6 +155,13 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  [bool]"Any non empty string"
  [bool](-12354893)   # Boolean typecast of a negative number 
  [bool](12 + (3 * 6))
+ [bool](Get-ChildItem -Path Env: | Where-Object {$_.Name -eq "username"})
+ [bool]@(0x01BE)
+ [bool][System.Collections.ArrayList]
+ [bool][System.Collections.CaseInsensitiveComparer]
+ [bool][System.Collections.Hashtable]
+ 
+ # Well, you get the point.
  ```
  - Boolean typecast of any class will return `True` as well:
  ```
@@ -168,23 +175,12 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  [bool][byte]
  [bool][timespan]
  [bool][datetime]
- 
- [bool][System.Collections.ArrayList]
- [bool][System.Collections.CaseInsensitiveComparer]
- [bool][System.Collections.Hashtable]
- # Well, you get the point.
  ```
  - The result of a comparison that evaluates to `True` (duh):
  ```
  (9999 -eq 9999)
  ([math]::Round([math]::PI) -eq (4583 - 4580))
  [Math]::E -ne [Math]::PI
- ```
-
- - Boolean type casting something you know will return a value Not equal to 0 (can also be a string, array, etc)
- ```
- [bool](Get-ChildItem -Path Env: | Where-Object {$_.Name -eq "username"})
- [bool]@(0x01BE)
  ```
  - Or you can just grab a `True` value from an object's attributes:
  ```
@@ -197,11 +193,9 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  ```
  [bool](![bool]$null)
  [System.Collections.CaseInsensitiveComparer] -ne [bool][datetime]'2023-01-01'
+ [bool]$(Get-LocalGroupMember Administrators)
  ```
- !$False
 
-
-In loops and comparisons....
 
 ## Cmdlet Quote Interruption
 You can obfuscate cmdlets by adding single and/or double quotes in between their characters, as long as it's not at the beginning. It's super effective! For example, the expresion `iex "pwd"` can be substituted with:
