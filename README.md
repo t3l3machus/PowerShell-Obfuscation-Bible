@@ -1,4 +1,9 @@
-# PowahShell
+# PowerShell Obfuscation Bible
+[![Python](https://img.shields.io/badge/Python-%E2%89%A5%203.6-yellow.svg)](https://www.python.org/) 
+<img src="https://img.shields.io/badge/PowerShell-%E2%89%A5%20v3.0-blue">
+[![License](https://img.shields.io/badge/license-MIT-red.svg)](https://github.com/t3l3machus/PowerShell-Obfuscation-Bible/blob/main/LICENSE.md)
+<img src="https://img.shields.io/badge/Maintained%3F-Yes-96c40f">
+
 A collection of techniques, examples and a little bit of theory for manually obfuscating PowerShell scripts to achieve AV evasion, compiled for educational purposes. The contents of this repository are the result of personal research, including reading materials online and conducting trial-and-error attempts in labs and pentests.  
   
 ⚠️ **Disclaimer**: Usage of the techniques and concepts described in this repository for gaining unauthorized access to systems that you do not have permission to test is illegal. You are responsible for your actions. Don't be evil.
