@@ -53,7 +53,7 @@ f.close()
 print(entropy(content))
 ```  
 
-Or just use this online [Shannon Entropy calculator](https://planetcalc.com/2476/).
+You can also use this online [Shannon Entropy calculator](https://planetcalc.com/2476/) or Microsoft's [Sigcheck.exe](https://learn.microsoft.com/en-us/sysinternals/downloads/sigcheck) with the `-a` option.
 
 ## Identify Detection Triggers
 The mature and elegant thing to do before jumping into trial and error obfuscation tests to come up with a payload variation that is not flagged, is to identify the part(s) in a script that trigger malware detection. Especially in short scripts like C2 commands, you might be able to make insignificant changes and fly off the radar on the spot.  
