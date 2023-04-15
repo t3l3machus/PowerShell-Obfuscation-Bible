@@ -64,7 +64,7 @@ A great tool to identify such triggers is [AMSItrigger](https://github.com/Rythm
 You could also identify triggers manually by executing a script chunk by chunk.
 
 ## Rename Objects
-When obfuscating scripts, it should be a priority to replace variable/class/function names with random ones. That way, in combination with other techniques, you will be able to bypass detection easily. But you should keep in mind the entropy of the payloads you develop. Take in consideration the following standard reverse shell script that is generally detected by most if not all AVs:  
+When obfuscating scripts, it should be a priority to replace variable/class/function names with random ones. That way, in combination with other techniques, you will be able to bypass detection easily. But you should keep in mind the [entropy](#Entropy) of the payloads you develop. Take in consideration the following standard reverse shell script that is generally detected by most if not all AVs:  
   
 ![image](https://user-images.githubusercontent.com/75489922/232206192-ae6a38f6-a41f-4b60-860b-2321a2ea6dbd.png)
   
