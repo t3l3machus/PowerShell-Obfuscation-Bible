@@ -113,7 +113,7 @@ def main():
 	payload = get_file_content(argv[1])
 	used_var_names = []
 
-	# Identify variables in script
+	# Identify variables definitions in script
 	variable_definitions = re.findall('\$[a-zA-Z0-9_]*[\ ]{0,}=', payload)
 	variable_definitions.sort(key=len)
 	variable_definitions.reverse()
