@@ -86,15 +86,65 @@ This variation also has all variables replaced but this time with names consisti
 ![image](https://user-images.githubusercontent.com/75489922/232209595-b522dc9b-9b7f-4819-8af4-4a73eb5ffed5.png)
   
   
-⚡ Both of these variations will bypass common AVs, but the second one has a lower entropy and will probably have a better chance when processed by EDRs and other sophisticated anti-malware engines. ⚠️ I am not saying that the better performance of the second payload variation is certainly because of the entropy level (I can't really know that, it could have been the length or both or who knows what), but it is an important aspect to have in mind when obfuscating stuff and this example is meant to underline the concept.
+⚡ Both of these variations will bypass common AVs, but the second one has a lower entropy and will probably have a better chance when processed by EDRs and other sophisticated anti-malware engines. ⚠️ I am not saying that the better performance of the second payload variation is certainly because of the entropy level (I can't really know that, it could have been the length or both or who knows what), but it is an important aspect to have in mind when obfuscating stuff and this example is meant to underline that concept.  
   
+You can use the script below to randomize the names of variables in a PowerShell script. ⚠️ The script is not perfect! If you run it against large, complex PowerShell scripts it might break their functionality by replacing stuff it shouldn't. Use it with caution and be mindful.
+  
+```
+#!/bin/python3
+#
+# This script is an example. It is not perfect and you should use it with caution.
+# Source: https://github.com/t3l3machus/PowerShell-Obfuscation-Bible
+# Usage: python3 randomize-variables.py <path/to/powershell/script>
 
+import re
+from sys import argv
+from uuid import uuid4
 
+def get_file_content(path):
+	f = open(path, 'r')
+	content = f.read()
+	f.close()
+	return content
+	
 
+def main():
+
+	payload = get_file_content(argv[1])
+	used_var_names = []
+
+	# Identify variables in script
+	variable_definitions = re.findall('\$[a-zA-Z0-9_]*[\ ]{0,}=', payload)
+	variable_definitions.sort(key=len)
+	variable_definitions.reverse()
+
+	# Replace variable names
+	for var in variable_definitions:
+		
+		var = var.strip("\n \r\t=")
+
+		while True:
+			
+			new_var_name = uuid4().hex
+			
+			if (new_var_name in used_var_names) or (re.search(new_var_name, payload)):
+				continue
+				
+			else:
+				used_var_names.append(new_var_name)
+				break	
+						
+		payload = payload.replace(var, f'${new_var_name}')
+	
+	print(payload + '\n')
+
+	
+main()
+```
 
 ## Obfuscate Boolean Values
-It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]0x01`):
- - Boolean typecast of literally anything that is not 0 or Null will return `True`:
+It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. Especially if you have identified the detection trigger in a given payload and that includes a `$True` or `$False` value, you will probably be able to bypass detection by simply replacing it with a boolean substitute. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]0x01`):
+ - Boolean typecast of literally anything that is not `0` or `Null` or an `empty string`, will return `True`:
  ```
  [bool]1254
  [bool]0x12AE
