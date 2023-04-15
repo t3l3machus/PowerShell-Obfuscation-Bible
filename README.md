@@ -194,6 +194,7 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  [bool](![bool]$null)
  [System.Collections.CaseInsensitiveComparer] -ne [bool][datetime]'2023-01-01'
  [bool]$(Get-LocalGroupMember Administrators)
+ !!!![bool][bool][bool][bool][bool][bool]
  ```
 
 
