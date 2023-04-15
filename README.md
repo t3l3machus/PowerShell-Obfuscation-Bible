@@ -330,6 +330,7 @@ Encode your string and decode it within the script:
 ```
 "$([char]([byte]0x6d)+[char]([byte]0x61)+[char]([byte]0x6c)+[char]([byte]0x77)+[char]([byte]0x61)+[char]([byte]0x72)+[char]([byte]0x65))"
 ```
+That's only to get you started. To be continued...
 
 ## Append/Remove Comments
 ### Appending Comments
