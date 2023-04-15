@@ -300,7 +300,7 @@ The `(pwd).Path` part can be replaced by the following weird, unorthodox little 
 There are of course simpler substitutes for `pwd` like `gl`, `get-location` and `cmd.exe /c chdir` that could do the trick, especially in combination with other techniques.
 
 ## Mess With Strings
-There's no end to what could someone do with strings. Find below some interesting concepts. Examples use the string `'malware'`:
+There's no end to what one can do with strings. Find below some interesting concepts. Examples use the string `'malware'`:
 
 ### Concatenation
 Pretty straightforward and classic:
