@@ -1,5 +1,7 @@
 # PowahShell
-A collection of techniques, examples and a little bit of theory for manually obfuscating PowerShell scripts.
+A collection of techniques, examples and a little bit of theory for manually obfuscating PowerShell scripts, compiled for educational purposes. The content of this repository is the product of personal research of reading stuff online and performing trial and error attempts in labs and pentests. You should not take anything for granted.  
+  
+⚠️ **Disclaimer**: Usage of the techniques and concepts described in this repository for gaining unauthorized access to systems is illegal. You are responsible for your actions. Don't be evil.
 
 ## Table of Contents
 1. [Entropy](#Entropy)
