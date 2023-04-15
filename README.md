@@ -17,13 +17,13 @@ A collection of techniques, examples and a little bit of theory for manually obf
 
 ## Entropy
 The scientific term `entropy`, which is generally defined as **the measure of randomness or disorder of a system** is important in AV evasion. This is because, 
-malware often contains code that is highly randomized, encrypted and/or encoded (obfuscated) to make it difficult to analyze and therefore detect. As one of various methods, Antivirus software can detect malware by analyzing the entropy of a payload or file.  
+malware often contains code that is highly randomized, encrypted and/or encoded (obfuscated) to make it difficult to analyze and therefore detect. As one of various methods, Antivirus software can detect malware by measuring the entropy of a payload or file.  
   
 It is important to understand this concept because, when obfuscating code, you should keep in mind the entropy variance created by the changes you choose to make. Breaking signatures is easy, but if you don't pay attention to the entropy level, sophisticated AV/EDRs will see through it.   
   
-Long story short, **the greater the entropy, the more likely the data is obfuscated or encrypted, and the more probable the file is malicious**. Fortunately, there are ways to lower it.  
+A principle to keep in mind: **The greater the entropy, the more likely the data is obfuscated or encrypted, and the more probable the file/payload is malicious**. Fortunately, there are ways to lower it.  
   
-`Claude E. Shannon` introduced a formula in his 1948 paper `A Mathematical Theory of Communication` which you can use to measure the entropy of the payloads you create / obfuscate. Here's a simple Python implementation of the `Shannon Entropy` you can use:
+`Claude E. Shannon` introduced a formula in his 1948 paper `A Mathematical Theory of Communication` which can be used to measure the entropy in a set of data. Here's a simple Python implementation of the `Shannon Entropy` you can use to measure the entropy of the payloads you develop:
 ```
 #!/bin/python3
 # Usage: python3 entropy.py <file>
@@ -50,18 +50,45 @@ content = f.read()
 f.close()
 
 print(entropy(content))
-```
+```  
+
 Or just use this online [Shannon Entropy calculator](https://planetcalc.com/2476/).
 
 ## Identify Detection Triggers
-The mature and elegant thing to do before jumping into trial - error obfuscation tests to come up with a payload variation that is not flagged, is to identify the part(s) that trigger malware detection. Especially in short scripts like C2 commands, you might be able to make insignificant changes and fly off the radar on the spot.  
+The mature and elegant thing to do before jumping into trial and error obfuscation tests to come up with a payload variation that is not flagged, is to identify the part(s) in a script that trigger malware detection. Especially in short scripts like C2 commands, you might be able to make insignificant changes and fly off the radar on the spot.  
   
-A great tool to accomplish that is [AMSItrigger](https://github.com/RythmStick/AMSITrigger). Here's an example:  
+A great tool to identify such triggers is [AMSItrigger](https://github.com/RythmStick/AMSITrigger). Here's a usage example with a file containing a malicious script. The red area signifies the part that obfuscation should be applied:  
   
 ![image](https://user-images.githubusercontent.com/75489922/231490064-863ab464-84f3-4b38-9c9e-a48c23e3070c.png)  
-You can also do this manually by executing a script chunk by chunk.
+  
+You could also identify triggers manually by executing a script chunk by chunk.
 
 ## Rename Objects
+When obfuscating scripts, it should be a priority to replace variable/class/function names with random ones. That way, in combination with other techniques, you will be able to bypass detection easily. But you should keep in mind the entropy of the payloads you develop. Take in consideration the following standard reverse shell script that is generally detected by most if not all AVs:  
+  
+![image](https://user-images.githubusercontent.com/75489922/232206192-ae6a38f6-a41f-4b60-860b-2321a2ea6dbd.png)
+  
+Now consider the following obfuscated version:  
+  
+![image](https://user-images.githubusercontent.com/75489922/232206710-97b7dcc0-20d5-475a-85a3-21f95fefe265.png)
+  
+In this version, all variable names have been substituted with 32 chars long random names. I also replaced `(pwd).Path` with `$(gl)`. The payload has a `Shannon entropy` of `4.96`. At the time of writing this, it is not detected by MS Defender and a banch of other products:  
+  
+![image](https://user-images.githubusercontent.com/75489922/232209121-e764fd97-31be-4e90-9d1f-8e3913497ffb.png)
+
+  
+Now consider this version:  
+  
+![image](https://user-images.githubusercontent.com/75489922/232209939-cf36274f-c4db-42bf-8ebb-3ea7970197af.png)
+  
+This variation also has all variables replaced but this time with names consisting of x number of 'f' characters. I also replaced `(pwd).Path` with `$(gl)` here as well. Again, at the time of writing, it is not detected by MS Defender. The payload has a `Shannon entropy` of `0.76`.  
+  
+![image](https://user-images.githubusercontent.com/75489922/232209595-b522dc9b-9b7f-4819-8af4-4a73eb5ffed5.png)
+  
+  
+⚡ Both of these variations will bypass common AVs, but the second one has a lower entropy and will probably have a better chance when processed by EDRs and other sophisticated anti-malware engines. ⚠️ I am not saying that the better performance of the second payload variation is certainly because of the entropy level (I can't really know that, it could have been the length or both or who knows what), but it is an important aspect to have in mind when obfuscating stuff and this example is meant to underline the concept.
+  
+
 
 
 
