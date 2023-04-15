@@ -325,10 +325,9 @@ Encode your string and decode it within the script:
 [System.Text.Encoding]::Default.GetString([System.Convert]::FromBase64String("bWFsd2FyZQ=="))
 ```
 
-### Base64 decode the desired string:
-Encode your string and decode it within the script:
+### Get the desired string's chars from bytes:
 ```
-[System.Text.Encoding]::Default.GetString([System.Convert]::FromBase64String("bWFsd2FyZQ=="))
+"$([char]([byte]0x6d)+[char]([byte]0x61)+[char]([byte]0x6c)+[char]([byte]0x77)+[char]([byte]0x61)+[char]([byte]0x72)+[char]([byte]0x65))"
 ```
 
 ## Append/Remove Comments
