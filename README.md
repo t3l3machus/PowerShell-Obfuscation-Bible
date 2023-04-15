@@ -12,9 +12,10 @@ A collection of techniques, examples and a little bit of theory for manually obf
 6. [Get-Command Technique](#Get-Command-Technique)
 7. [Substitute Loops](#Substitute-Loops)
 8. [Substitute Commands](#Substitute-Commands)
-9. [Append Junk](#Append-Junk)
-10. [Append/Remove Comments](#Append\/Remove-Comments)
-11. [Randomize Char Cases](#Randomize-Char-Cases)
+9. [Mess With Strings](#Mess-With-Strings)
+10. [Append Junk](#Append-Junk)
+11. [Append/Remove Comments](#Append\/Remove-Comments)
+12. [Randomize Char Cases](#Randomize-Char-Cases)
 
 
 ## Entropy
