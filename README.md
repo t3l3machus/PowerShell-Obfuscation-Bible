@@ -21,7 +21,7 @@ A collection of techniques, examples and a little bit of theory for manually obf
 8. [Substitute Commands](#Substitute-Commands)
 9. [Mess With Strings](#Mess-With-Strings)
 10. [Append Junk](#Append-Junk)
-11. [Append/Remove Comments](#Append\/Remove-Comments)
+11. [Add or Remove Comments](#Add-or-Remove-Comments)
 12. [Randomize Char Cases](#Randomize-Char-Cases)
 
 
@@ -339,7 +339,7 @@ Encode your string and decode it within the script:
 ```
 That's only to get you started. To be continued...
 
-## Append/Remove Comments
+## Add or Remove Comments
 ### Appending Comments
 Obfuscating a script by appending comments here and there might actually do the trick on its own.  
 for example, a reverse shell command could be obfuscated like this:
