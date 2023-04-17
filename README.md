@@ -23,6 +23,7 @@ A collection of techniques, examples and a little bit of theory for manually obf
 10. [Append Junk](#Append-Junk)
 11. [Add or Remove Comments](#Add-or-Remove-Comments)
 12. [Randomize Char Cases](#Randomize-Char-Cases)
+13. [Rearrange Script Components](#Rearrange-Script-Components)
 
 
 ## Entropy
