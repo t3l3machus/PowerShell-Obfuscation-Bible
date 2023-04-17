@@ -12,7 +12,7 @@ A collection of techniques, examples and a little bit of theory for manually obf
 
 ## Table of Contents
 1. [Entropy](#Entropy)
-2. [Identify Detection Triggers](Identify-Detection-Triggers)
+2. [Identify Detection Triggers](#Identify-Detection-Triggers)
 3. [Rename Objects](#Rename-Objects)
 4. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
 5. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
