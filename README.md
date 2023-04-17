@@ -4,9 +4,9 @@
 [![License](https://img.shields.io/badge/license-MIT-red.svg)](https://github.com/t3l3machus/PowerShell-Obfuscation-Bible/blob/main/LICENSE.md)
 <img src="https://img.shields.io/badge/Maintained%3F-Yes-96c40f">  
   
-YouTube video presentation: [youtube.com/watch?v=tGFdmAh_lXE](https://www.youtube.com/watch?v=tGFdmAh_lXE)
-
 A collection of techniques, examples and a little bit of theory for manually obfuscating PowerShell scripts to achieve AV evasion, compiled for educational purposes. The contents of this repository are the result of personal research, including reading materials online and conducting trial-and-error attempts in labs and pentests.  
+  
+**YouTube video presentation**: [youtube.com/watch?v=tGFdmAh_lXE](https://www.youtube.com/watch?v=tGFdmAh_lXE)
   
 ⚠️ **Disclaimer**: Usage of the techniques and concepts described in this repository for gaining unauthorized access to systems that you do not have permission to test is illegal. You are responsible for your actions. Don't be evil.
 
