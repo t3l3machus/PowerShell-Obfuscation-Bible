@@ -310,6 +310,22 @@ There are of course simpler substitutes for `pwd` like `gl`, `get-location` and 
 ## Mess With Strings
 There's no end to what one can do with strings. Find below some interesting concepts. Examples use the string `'malware'`:
 
+### Convert string to here-string  
+At the expense of adding a few new lines, you can turn a string into a here-string.  
+This:  
+```
+$x = 'echo malware';
+iex $x;
+```
+Is the same as:
+```
+$x = 'echo malware';
+iex @"
+$x
+"@
+```
+
+
 ### Concatenation
 Pretty straightforward and classic:
 ```
