@@ -198,7 +198,7 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  $x = [mailaddress].IsAutoLayout
  $x = [ValidateCount].IsVisible
  ```
- - You can mix all these stuff and weird things up by composing hideous ways to state `True` or `False`:
+ - You can mix all this stuff and weird things up by composing hideous ways to state `True` or `False`:
  ```
  [bool](![bool]$null)
  [System.Collections.CaseInsensitiveComparer] -ne [bool][datetime]'2023-01-01'
