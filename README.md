@@ -325,6 +325,11 @@ $x
 "@
 ```
 
+### Reverse Strings
+```
+$x="Your string reversed".ToCharArray(); [array]::reverse($x); $x -join ""
+```
+
 
 ### Concatenation
 Pretty straightforward and classic:
