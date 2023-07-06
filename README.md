@@ -24,6 +24,7 @@ A collection of techniques, examples and a little bit of theory for manually obf
 11. [Add or Remove Comments](#Add-or-Remove-Comments)
 12. [Randomize Char Cases](#Randomize-Char-Cases)
 13. [Rearrange Script Components](#Rearrange-Script-Components)
+14. [Execute Script line by line](#Execute-Script-line-by-line)
 
 
 ## Entropy
@@ -391,3 +392,6 @@ inVOkE-eXpReSSioN -vErbOse "WHoAmI /aLL" -dEBug
 
 ## Rearrange Script Components
 Sometimes simply moving variables and classes to different locations might work, especially if you have found the detection trigger and it includes some variable definition that could be taking place somewhere else, like the beginning of the script.
+
+## Execute Script line by line
+Sometimes, it is possible to achieve AV evasion by simply executing a malicious script line by line. This can of course be challenging to pull off given the circumstances. In case you try it, be aware of script blocks that have to be executed as a whole (e.g., loops, try-catch blocks, conditional statements, function definitions, etc). To test this, you can grab a common PowerShell reverse shell script (no obfuscation applied) and execute it line by line. Does it get flagged? ;)  
