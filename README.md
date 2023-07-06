@@ -92,7 +92,7 @@ Now consider this version:
   
 ![image](https://user-images.githubusercontent.com/75489922/232209939-cf36274f-c4db-42bf-8ebb-3ea7970197af.png)
   
-This variation also has all variable names replaced but this time with names consisting of x number of 'f' characters, which results in a significant drop of the payloads entropy. I replaced `(pwd).Path` with `$(gl)` here as well. Again, at the time of writing, it is not detected by MS Defender. The payload has a `Shannon entropy` of `0.76`.  
+This variation also has all variable names replaced but this time with names consisting of x number of 'f' characters, which results in a significant drop of the payload's entropy. I replaced `(pwd).Path` with `$(gl)` here as well. Again, at the time of writing, it is not detected by MS Defender. The payload has a `Shannon entropy` of `0.76`.  
   
 ![image](https://user-images.githubusercontent.com/75489922/232209595-b522dc9b-9b7f-4819-8af4-4a73eb5ffed5.png)
   
