@@ -16,15 +16,16 @@ A collection of techniques, examples and a little bit of theory for manually obf
 3. [Rename Objects](#Rename-Objects)
 4. [Obfuscate Boolean Values](#Obfuscate-Boolean-Values)
 5. [Cmdlet Quote Interruption](#Cmdlet-Quote-Interruption)
-6. [Get-Command Technique](#Get-Command-Technique)
-7. [Substitute Loops](#Substitute-Loops)
-8. [Substitute Commands](#Substitute-Commands)
-9. [Mess With Strings](#Mess-With-Strings)
-10. [Append Junk](#Append-Junk)
-11. [Add or Remove Comments](#Add-or-Remove-Comments)
-12. [Randomize Char Cases](#Randomize-Char-Cases)
-13. [Rearrange Script Components](#Rearrange-Script-Components)
-14. [Execute Script line by line](#Execute-Script-line-by-line)
+6. [Cmdlet Caret Interruption](#Cmdlet-Caret-Interruption)
+7. [Get-Command Technique](#Get-Command-Technique)
+8. [Substitute Loops](#Substitute-Loops)
+9. [Substitute Commands](#Substitute-Commands)
+10. [Mess With Strings](#Mess-With-Strings)
+11. [Append Junk](#Append-Junk)
+12. [Add or Remove Comments](#Add-or-Remove-Comments)
+13. [Randomize Char Cases](#Randomize-Char-Cases)
+14. [Rearrange Script Components](#Rearrange-Script-Components)
+15. [Execute Script line by line](#Execute-Script-line-by-line)
 
 
 ## Entropy
@@ -230,6 +231,13 @@ i""e''x"" "p`"`"w`"`"d''"
 ie""x'' "p`"`"w''d`"`""
 
 # You get the point.
+```
+
+
+## Cmdlet Caret Interruption
+This is a bit dirty but might come in handy. In a Windows CMD terminal, it is possible to append the caret (^) symbol inbetween a commands characters and it will still be interpreted nomrally. In a powershell script, one way to utilize this would be:
+```
+cmd /c "who^am^i"
 ```
 
 ## Get-Command Technique
