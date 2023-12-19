@@ -235,7 +235,7 @@ ie""x'' "p`"`"w''d`"`""
 
 
 ## Cmdlet Caret Interruption
-This is a bit dirty but might come in handy. In a Windows CMD terminal, it is possible to append the caret (^) symbol inbetween a commands characters and it will still be interpreted nomrally. In a powershell script, one way to utilize this would be:
+This is a bit dirty but might come in handy. In a Windows CMD terminal, it is possible to append the caret (^) symbol in-between a commands characters and it will still be interpreted normally. In a powershell script, one way to utilize this would be:
 ```
 cmd /c "who^am^i"
 ```
