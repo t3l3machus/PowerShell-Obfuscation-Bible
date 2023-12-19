@@ -239,6 +239,9 @@ This is a bit dirty but might come in handy. In a Windows CMD terminal, it is po
 ```
 cmd /c "who^am^i"
 ```
+![Untistled](https://github.com/t3l3machus/PowerShell-Obfuscation-Bible/assets/75489922/6259fff4-69f7-41b1-a114-b36a2e5e73c0)
+
+
 
 ## Get-Command Technique
 A really cool trick my friend and mighty haxor Karol Musolff ([@kmusolff](https://github.com/kmusolff)) showed me. You can use `Get-Command` (or `gcm`) to retrieve the name (string) of any command, including all of the non-PowerShell files in the Path environment variable (`$env:Path`) by using wildcards. You can then run them as jobs with the `&` operator. For example, the following line:
